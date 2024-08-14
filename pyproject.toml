@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "python-prj-template"
+version = "0.1.0"
+description = "Python project template."
+authors = ["siroa"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
