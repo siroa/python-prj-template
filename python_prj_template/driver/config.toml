@@ -3,7 +3,7 @@
 host = "localhost"
 port = 9200
 user = "admin"
-password = "HogeHoge9999#"
+password = "admin"
 use_ssl = true
 verify_certs = false
 ssl_show_warn = false
