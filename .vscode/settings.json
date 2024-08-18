@@ -1,0 +1,22 @@
+{
+    // 設定ファイルの指定
+    "mypy-type-checker.args": [
+        "--config=${workspaceFolder}/pyproject.toml"
+    ],
+
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "ruff.format.args": [
+        "--config=${workspaceFolder}/pyproject.toml"
+    ],
+    "mypy-type-checker.ignorePatterns": [
+        "${workspaceFolder}/tests/*.py",
+        "${workspaceFolder}/tests/**/*.py"
+    ],
+
+}
