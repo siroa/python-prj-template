@@ -34,5 +34,6 @@ poetry run python <python-file>
 
 ## Test
 ```
+export test=test
 poetry run pytest --cov=python_prj_template
 ```
