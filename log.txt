@@ -1,0 +1,76 @@
+Running tests for python-prj-template (/Users/siro/python-prj-template)
+============================= test session starts ==============================
+platform darwin -- Python 3.12.4, pytest-8.3.2, pluggy-1.5.0 -- /Users/siro/python-prj-template/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/siro/python-prj-template
+configfile: pyproject.toml
+plugins: cov-5.0.0
+collecting ... collected 4 items
+
+tests/test_client.py::TestClient::test_read_config PASSED                [ 25%]
+tests/test_client.py::TestClient::test_create_client_success PASSED      [ 50%]
+tests/test_client.py::TestClient::test_create_client_failure PASSED      [ 75%]
+tests/test_logger.py::test_logger_initialization FAILED                  [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_logger_initialization __________________________
+
+mock_rotating_file_handler = <MagicMock name='RotatingFileHandler' id='4411021008'>
+mock_stream_handler = <MagicMock spec='RotatingFileHandler' id='4411024848'>
+mock_get_logger = <MagicMock name='getLogger' id='4411028736'>
+
+    @patch("python_prj_template.logger.logger.logging.getLogger")
+    @patch("python_prj_template.logger.logger.logging.StreamHandler")
+    @patch("python_prj_template.logger.logger.logging.handlers.RotatingFileHandler")
+    def test_logger_initialization(mock_rotating_file_handler, mock_stream_handler, mock_get_logger):
+        # Setup the mock objects
+        mock_logger = MagicMock()
+        mock_get_logger.return_value = mock_logger
+        mock_st_handler_instance = MagicMock()
+        mock_stream_handler.return_value = mock_st_handler_instance
+        mock_fl_handler_instance = MagicMock()
+        mock_rotating_file_handler.return_value = mock_fl_handler_instance
+    
+        # Create an instance of the Logger class
+        logger = Logger("test_logger")
+    
+        # Assert that getLogger was called with the correct logger name
+        mock_get_logger.assert_called_with("test_logger")
+    
+        # Assert that the logger level was set to DEBUG
+        mock_logger.setLevel.assert_called_with(logging.DEBUG)
+    
+        # Assert that StreamHandler was correctly set up
+>       mock_stream_handler.assert_called()
+
+tests/test_logger.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MagicMock spec='RotatingFileHandler' id='4411024848'>
+
+    def assert_called(self):
+        """assert that the mock was called at least once
+        """
+        if self.call_count == 0:
+            msg = ("Expected '%s' to have been called." %
+                   (self._mock_name or 'mock'))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'mock' to have been called.
+
+../.rye/py/cpython@3.12.4/lib/python3.12/unittest/mock.py:913: AssertionError
+
+---------- coverage: platform darwin, python 3.12.4-final-0 ----------
+Name                                           Stmts   Miss Branch BrPart  Cover
+--------------------------------------------------------------------------------
+src/python_prj_template/__init__.py                2      1      0      0    50%
+src/python_prj_template/logger/logger.py          15      0      0      0   100%
+src/python_prj_template/opensearch/client.py      31      0      2      0   100%
+tests/__init__.py                                  0      0      0      0   100%
+tests/test_client.py                              41      0     22      0   100%
+tests/test_logger.py                              26      7      8      0    79%
+--------------------------------------------------------------------------------
+TOTAL                                            115      8     32      0    95%
+
+=========================== short test summary info ============================
+FAILED tests/test_logger.py::test_logger_initialization - AssertionError: Exp...
+========================= 1 failed, 3 passed in 1.27s ==========================
