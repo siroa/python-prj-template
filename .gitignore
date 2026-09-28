@@ -1,1 +1,4 @@
 .pytest_cache
+.devcontainer
+.vscode
+.DS_Store
